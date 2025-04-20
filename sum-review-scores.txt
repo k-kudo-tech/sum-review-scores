@@ -1,0 +1,38 @@
+const reviews = [
+  { category: '食品', score: 4 },
+  { category: '家電', score: 5 },
+  { category: '書籍', score: 3 },
+  { category: '食品', score: 2 },
+  { category: '家電', score: 4 },
+  { category: '書籍', score: 5 },
+];
+
+// New container for each category
+// 各カテゴリ用の空の箱を作る
+const categories = {};
+
+// Loop the reviews
+// reviewsをループ
+for (let i = 0; i < reviews.length; i++) {
+  const { category, score } = reviews[i];
+
+  // Skip if not support category
+  // 対応外のカテゴリをスキップ
+  if (typeof category !== 'string' || typeof score !== 'number') continue;
+
+  // Create container if doesn't exist
+  // カテゴリの箱がなければ作る
+  if (!categories[category]) {
+    categories[category] = [];
+  }
+
+  // Add score to category
+  // スコアをそのカテゴリに追加
+  categories[category].push(score);
+}
+
+// Output each scores
+// 各カテゴリのスコアを出力
+for (const category in categories) {
+  console.log(`${category}のスコア:`, categories[category]);
+}
